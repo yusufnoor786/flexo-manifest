@@ -122,10 +122,6 @@
   <!-- Packages (Services) repos -->
   <project path="packages/services/Telecomm" name="Evolution-X/packages_services_Telecomm" revision="tiramisu" remote="github" />
   <project path="packages/services/Telephony" name="Evolution-X/packages_services_Telephony" revision="tiramisu" remote="github" />
-
-  <!-- Packages (Services) repos -->
-  <project path="packages/services/Telecomm" name="Evolution-X/packages_services_Telecomm" revision="tiramisu" remote="github" />
-  <project path="packages/services/Telephony" name="Evolution-X/packages_services_Telephony" revision="tiramisu" remote="github" />
   
   <!-- System Repos -->
   <project path="system/core" name="Evolution-X/system_core" revision="tiramisu" remote="github" />
