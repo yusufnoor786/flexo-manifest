@@ -14,11 +14,11 @@
            revision="refs/heads/tiramisu" />
 		   
   <!-- Framework repos -->
-  <project path="frameworks/av" name="frameworks_av" remote="aosp" />
+<!--  <project path="frameworks/av" name="frameworks_av" remote="aosp" />
   <project path="frameworks/base" name="frameworks_base" remote="aosp" />
   <project path="frameworks/native" name="frameworks_native" remote="aosp" />
   <project path="frameworks/opt/telephony" name="frameworks_opt_telephony" remote="aosp" />
-
+-->
   <!-- General repos -->
   <project path="art" name="art" remote="altho" />
   <project path="bionic" name="bionic" remote="altho" />
