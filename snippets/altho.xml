@@ -8,7 +8,7 @@
   <remote name="pixel-gitlab"
           fetch="https://gitlab.com/PixelExperience/twelve"
           revision="twelve" />
-		  
+
    <remote  name="evo-gitlab"
            fetch="https://gitlab.com/EvoX"
            revision="refs/heads/tiramisu" />
@@ -118,6 +118,16 @@
   <!-- Packages (Resources) repos -->
   <project path="packages/resources/devicesettings" name="Evolution-X/packages_resources_devicesettings" revision="tiramisu" remote="github" />
   <project path="packages/apps/SettingsIntelligence" name="Evolution-X/packages_apps_SettingsIntelligence" revision="tiramisu" remote="github" />
+  
+  <!-- Packages (Services) repos -->
+  <project path="packages/services/Telecomm" name="Evolution-X/packages_services_Telecomm" revision="tiramisu" remote="github" />
+  <project path="packages/services/Telephony" name="Evolution-X/packages_services_Telephony" revision="tiramisu" remote="github" />
+
+  <!-- System Repos -->
+  <project path="system/core" name="Evolution-X/system_core" revision="tiramisu" remote="github" />
+  <project path="system/libhwbinder" name="Evolution-X/system_libhwbinder" revision="tiramisu" remote="github" />
+  <project path="system/media" name="Evolution-X/system_media" revision="tiramisu" remote="github" />
+  <project path="system/security" name="Evolution-X/system_security" revision="tiramisu" remote="github" />
   
   <!-- Packages (Services) repos -->
   <project path="packages/services/Telecomm" name="Evolution-X/packages_services_Telecomm" revision="tiramisu" remote="github" />
