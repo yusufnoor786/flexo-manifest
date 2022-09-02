@@ -9,20 +9,24 @@
           fetch="https://gitlab.com/PixelExperience/twelve"
           revision="twelve" />
 
+   <remote name="flexo"
+          fetch="https://github.com/Project-Altho"
+          revision="13" />
+		  
    <remote  name="evo-gitlab"
            fetch="https://gitlab.com/EvoX"
            revision="refs/heads/tiramisu" />
 		   
   <!-- Framework repos -->
-<!--  <project path="frameworks/av" name="frameworks_av" remote="aosp" />
-  <project path="frameworks/base" name="frameworks_base" remote="aosp" />
-  <project path="frameworks/native" name="frameworks_native" remote="aosp" />
-  <project path="frameworks/opt/telephony" name="frameworks_opt_telephony" remote="aosp" />
--->
+  <project path="frameworks/av" name="frameworks_av" remote="flexo" />
+  <project path="frameworks/base" name="frameworks_base" remote="flexo" />
+  <project path="frameworks/native" name="frameworks_native" remote="flexo" />
+  <project path="frameworks/opt/telephony" name="frameworks_opt_telephony" remote="flexo" />
+
   <!-- General repos -->
-  <project path="art" name="art" remote="altho" />
-  <project path="bionic" name="bionic" remote="altho" />
-  <project path="build/make" name="build" remote="altho">
+  <project path="art" name="art" remote="flexo" />
+  <project path="bionic" name="bionic" remote="flexo" />
+  <project path="build/make" name="build" remote="flexo">
     <copyfile src="core/root.mk" dest="Makefile" />
     <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
     <linkfile src="buildspec.mk.default" dest="build/buildspec.mk.default" />
@@ -31,32 +35,23 @@
     <linkfile src="target" dest="build/target" />
     <linkfile src="tools" dest="build/tools" />
   </project>
-  <project path="build/soong" name="build_soong" remote="altho" >
+  <project path="build/soong" name="build_soong" remote="flexo" >
     <linkfile src="root.bp" dest="Android.bp" />
     <linkfile src="bootstrap.bash" dest="bootstrap.bash" />
   </project>
-  <project path="bootable/recovery" name="bootable_recovery" remote="altho" />
-  <project path="device/custom/sepolicy" name="device_custom_sepolicy" remote="altho" />
-  <project path="manifest" name="manifest" remote="altho" />
+  <project path="bootable/recovery" name="bootable_recovery" remote="flexo" />
+  <project path="manifest" name="manifest" remote="flexo" />
 
   <!-- Hardware repos -->
-  <project path="hardware/custom/interfaces" name="hardware_custom_interfaces" remote="altho" />
-  <project path="hardware/interfaces" name="hardware_interfaces" remote="altho" />
-  <project path="hardware/libhardware" name="hardware_libhardware" remote="altho" />
-  <project path="hardware/motorola" name="hardware_motorola" remote="altho" />
-  <project path="hardware/qcom-caf/common" name="LineageOS/android_hardware_qcom-caf_common" groups="qcom,pdk-qcom" revision="lineage-19.1" remote="github">
+  <project path="hardware/custom/interfaces" name="ArrowOS/android_hardware_arrow_interfaces" revision="arrow-13.0" remote="github" />
+  <project path="hardware/interfaces" name="ArrowOS/android_hardware_interfaces" revision="arrow-13.0" remote="github" />
+  <project path="hardware/libhardware" name="ArrowOS/hardware_libhardware" revision="arrow-13.0" remote="github" />
+  <project path="hardware/ril" name="ArrowOS/android_hardware_ril" groups="pdk" revision="arrow-13.0" remote="github" />
+  <project path="hardware/libhardware_legacy" name="ArrowOS/android_hardware_libhardware_legacy" revision="arrow-13.0" remote="github" />
+  <project path="hardware/qcom-caf/common" name="ArrowOS/android_hardware_qcom-caf_common" revision="arrow-13.0" remote="github" >
     <!-- add guard for AOSP hardware/qcom dir -->
     <linkfile src="os_pickup_aosp.mk" dest="hardware/qcom/Android.mk" />
-    <!-- for AOSP sdm845 and sm8150, we override os_pickup.mk -->
-    <linkfile src="os_pickup.mk" dest="hardware/qcom/sdm845/Android.mk" />
-    <linkfile src="os_pickup.mk" dest="hardware/qcom/sm8150/Android.mk" />
     <!-- add guards for CAF repositories -->
-    <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/msm8953/Android.bp" />
-    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/msm8953/Android.mk" />
-    <linkfile src="os_pickup.bp" dest="hardware/qcom-caf/msm8996/Android.bp" />
-    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/msm8996/Android.mk" />
-    <linkfile src="os_pickup.bp" dest="hardware/qcom-caf/msm8996-LA.UM.9.6.2.r1-04100-89xx.0/Android.bp" />
-    <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/msm8996-LA.UM.9.6.2.r1-04100-89xx.0/Android.mk" />
     <linkfile src="os_pickup.bp" dest="hardware/qcom-caf/msm8998/Android.bp" />
     <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/msm8998/Android.mk" />
     <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sdm660/Android.bp" />
@@ -69,96 +64,91 @@
     <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/sm8250/Android.mk" />
     <linkfile src="os_pickup_qssi.bp" dest="hardware/qcom-caf/sm8350/Android.bp" />
     <linkfile src="os_pickup.mk" dest="hardware/qcom-caf/sm8350/Android.mk" />
-    <linkfile src="os_pickup.bp" dest="hardware/nxp/Android.bp" />
+    <!-- NXP -->
     <linkfile src="os_pickup.bp" dest="vendor/nxp/opensource/pn5xx/Android.bp" />
     <linkfile src="os_pickup.mk" dest="vendor/nxp/opensource/pn5xx/Android.mk" />
     <linkfile src="os_pickup.bp" dest="vendor/nxp/opensource/sn100x/Android.bp" />
     <linkfile src="os_pickup.mk" dest="vendor/nxp/opensource/sn100x/Android.mk" />
-    <!-- add namespace for BT adv audio, as required for QTI BT stack -->
-    <linkfile src="os_pickup_qssi_bt.bp" dest="device/qcom/qssi/Android.bp" />
   </project>
-  <project path="hardware/qcom-caf/msm8953/audio" name="LineageOS/android_hardware_qcom_audio" groups="qcom,qcom_audio,pdk-qcom" remote="github" revision="lineage-18.1-caf-msm8953" />
-  <project path="hardware/qcom-caf/msm8953/display" name="LineageOS/android_hardware_qcom_display" groups="pdk-qcom,qcom,qcom_display" remote="github" revision="lineage-18.1-caf-msm8953" />
-  <project path="hardware/qcom-caf/msm8953/media" name="LineageOS/android_hardware_qcom_media" groups="qcom,pdk-qcom" remote="github" revision="lineage-18.1-caf-msm8953" />
-  <project path="hardware/qcom-caf/msm8996/audio" name="LineageOS/android_hardware_qcom_audio" groups="qcom,qcom_audio,pdk-qcom" revision="lineage-19.1-caf-msm8996" remote="github" />
-  <project path="hardware/qcom-caf/msm8996/display" name="LineageOS/android_hardware_qcom_display" groups="pdk-qcom,qcom,qcom_display" revision="lineage-19.1-caf-msm8996" remote="github" />
-  <project path="hardware/qcom-caf/msm8996/media" name="LineageOS/android_hardware_qcom_media" groups="pdk-qcom,qcom,qcom_media" revision="lineage-19.1-caf-msm8996" remote="github" />
-  <project path="hardware/qcom-caf/msm8996-LA.UM.9.6.2.r1-04100-89xx.0/audio" name="PixelExperience/hardware_qcom-caf_msm8996_audio" revision="twelve-LA.UM.9.6.2.r1-04100-89xx.0" remote="github" />
-  <project path="hardware/qcom-caf/msm8996-LA.UM.9.6.2.r1-04100-89xx.0/display" name="PixelExperience/hardware_qcom-caf_msm8996_display" revision="twelve-LA.UM.9.6.2.r1-04100-89xx.0" remote="github" />
-  <project path="hardware/qcom-caf/msm8996-LA.UM.9.6.2.r1-04100-89xx.0/media" name="PixelExperience/hardware_qcom-caf_msm8996_media" revision="twelve-LA.UM.9.6.2.r1-04100-89xx.0" remote="github" />
-  <project path="hardware/qcom-caf/msm8998/audio" name="LineageOS/android_hardware_qcom_audio" groups="qcom,qcom_audio,pdk-qcom" revision="lineage-19.1-caf-msm8998" remote="github" />
-  <project path="hardware/qcom-caf/msm8998/display" name="LineageOS/android_hardware_qcom_display" groups="pdk-qcom,qcom,qcom_display" revision="lineage-19.1-caf-msm8998" remote="github" />
-  <project path="hardware/qcom-caf/msm8998/media" name="LineageOS/android_hardware_qcom_media" groups="qcom,pdk-qcom" revision="lineage-19.1-caf-msm8998" remote="github" />
-  <project path="hardware/qcom-caf/sdm660/audio" name="ArrowOS/android_hardware_qcom_audio" groups="qcom,qcom_audio" revision="arrow-13.0-caf-sdm660" remote="github" />
-  <project path="hardware/qcom-caf/sdm660/display" name="ArrowOS/android_hardware_qcom_display" groups="qcom,qcom_display" revision="arrow-13.0-caf-sdm660" remote="github" />
-  <project path="hardware/qcom-caf/sdm660/media" name="ArrowOS/android_hardware_qcom_media" groups="qcom,qcom_media" revision="arrow-13.0-caf-sdm660" remote="github" />
-  <project path="hardware/qcom-caf/sdm845/audio" name="LineageOS/android_hardware_qcom_audio" groups="qcom,qcom_audio,pdk-qcom" revision="lineage-19.1-caf-sdm845" remote="github" />
-  <project path="hardware/qcom-caf/sdm845/display" name="LineageOS/android_hardware_qcom_display" groups="pdk-qcom,qcom,qcom_display" revision="lineage-19.1-caf-sdm845" remote="github" />
-  <project path="hardware/qcom-caf/sdm845/media" name="LineageOS/android_hardware_qcom_media" groups="qcom,pdk-qcom" revision="lineage-19.1-caf-sdm845" remote="github" />
-  <project path="hardware/qcom-caf/sm8150/audio" name="LineageOS/android_hardware_qcom_audio" groups="qcom,qcom_audio,pdk-qcom" revision="lineage-19.1-caf-sm8150" remote="github" />
-  <project path="hardware/qcom-caf/sm8150/display" name="LineageOS/android_hardware_qcom_display" groups="pdk-qcom,qcom,qcom_display" revision="lineage-19.1-caf-sm8150" remote="github" />
-  <project path="hardware/qcom-caf/sm8150/media" name="LineageOS/android_hardware_qcom_media" groups="qcom,pdk-qcom" revision="lineage-19.1-caf-sm8150" remote="github" />
-  <project path="hardware/qcom-caf/sm8250/audio" name="LineageOS/android_hardware_qcom_audio" groups="qcom,qcom_audio,pdk-qcom" revision="lineage-19.1-caf-sm8250" remote="github" />
-  <project path="hardware/qcom-caf/sm8250/display" name="LineageOS/android_hardware_qcom_display" groups="pdk-qcom,qcom,qcom_display" revision="lineage-19.1-caf-sm8250" remote="github" />
-  <project path="hardware/qcom-caf/sm8250/media" name="LineageOS/android_hardware_qcom_media" groups="qcom,pdk-qcom" revision="lineage-19.1-caf-sm8250" remote="github" />
-  <project path="hardware/qcom-caf/sm8350/audio" name="LineageOS/android_hardware_qcom_audio" groups="qcom,qcom_audio" revision="lineage-19.1-caf-sm8350" remote="github" />
-  <project path="hardware/qcom-caf/sm8350/display" name="LineageOS/android_hardware_qcom_display" groups="pdk,qcom,qcom_display" revision="lineage-19.1-caf-sm8350" remote="github" />
-  <project path="hardware/qcom-caf/sm8350/media" name="LineageOS/android_hardware_qcom_media" groups="qcom" revision="lineage-19.1-caf-sm8350" remote="github" />
-  <project path="hardware/qcom-caf/wlan" name="ArrowOS/android_hardware_qcom_wlan" revision="arrow-13.0-caf" remote="github" />
+  <project path="hardware/qcom-caf/msm8998/audio" name="ArrowOS/android_hardware_qcom_audio" groups="qcom,qcom_audio" remote="github" revision="arrow-13.0-caf-msm8998" />
+  <project path="hardware/qcom-caf/msm8998/display" name="ArrowOS/android_hardware_qcom_display" groups="pdk,qcom,qcom_display" remote="github" revision="arrow-13.0-caf-msm8998" />
+  <project path="hardware/qcom-caf/msm8998/media" name="ArrowOS/android_hardware_qcom_media" groups="qcom" remote="github" revision="arrow-13.0-caf-msm8998" />
+  <project path="hardware/qcom-caf/sdm660/audio" name="ArrowOS/android_hardware_qcom_audio" groups="qcom,qcom_audio" remote="github" revision="arrow-13.0-caf-sdm660" />
+  <project path="hardware/qcom-caf/sdm660/display" name="ArrowOS/android_hardware_qcom_display" groups="qcom,qcom_display" remote="github" revision="arrow-13.0-caf-sdm660" />
+  <project path="hardware/qcom-caf/sdm660/media" name="ArrowOS/android_hardware_qcom_media" groups="qcom,qcom_media" remote="github" revision="arrow-13.0-caf-sdm660" />
+  <project path="hardware/qcom-caf/sdm845/audio" name="ArrowOS/android_hardware_qcom_audio" groups="qcom,qcom_audio" remote="github" revision="arrow-13.0-caf-sdm845" />
+  <project path="hardware/qcom-caf/sdm845/display" name="ArrowOS/android_hardware_qcom_display" groups="pdk,qcom,qcom_display" remote="github" revision="arrow-13.0-caf-sdm845" />
+  <project path="hardware/qcom-caf/sdm845/media" name="ArrowOS/android_hardware_qcom_media" groups="qcom" remote="github" revision="arrow-13.0-caf-sdm845" />
+  <project path="hardware/qcom-caf/sm8150/audio" name="ArrowOS/android_hardware_qcom_audio" groups="qcom,qcom_audio" remote="arrow" revision="arrow-13.0-caf-sm8150" />
+  <project path="hardware/qcom-caf/sm8150/display" name="ArrowOS/android_hardware_qcom_display" groups="pdk,qcom,qcom_display" remote="github" revision="arrow-13.0-caf-sm8150" />
+  <project path="hardware/qcom-caf/sm8150/media" name="ArrowOS/android_hardware_qcom_media" groups="qcom" remote="github" revision="arrow-13.0-caf-sm8150" />
+  <project path="hardware/qcom-caf/sm8250/audio" name="ArrowOS/android_hardware_qcom_audio" groups="qcom,qcom_audio" remote="github" revision="arrow-13.0-caf-sm8250" />
+  <project path="hardware/qcom-caf/sm8250/display" name="ArrowOS/android_hardware_qcom_display" groups="pdk,qcom,qcom_display" remote="github" revision="arrow-13.0-caf-sm8250" />
+  <project path="hardware/qcom-caf/sm8250/media" name="ArrowOS/android_hardware_qcom_media" groups="qcom" remote="github" revision="arrow-13.0-caf-sm8250" />
+  <project path="hardware/qcom-caf/sm8350/audio" name="ArrowOS/android_hardware_qcom_audio" groups="qcom,qcom_audio" remote="arrow" revision="arrow-13.0-caf-sm8350" />
+  <project path="hardware/qcom-caf/sm8350/display" name="ArrowOS/android_hardware_qcom_display" groups="pdk,qcom,qcom_display" remote="github" revision="arrow-13.0-caf-sm8350" />
+  <project path="hardware/qcom-caf/sm8350/media" name="ArrowOS/android_hardware_qcom_media" groups="qcom" remote="github" revision="arrow-13.0-caf-sm8350" />
+  <project path="hardware/qcom-caf/wlan" name="ArrowOS/android_hardware_qcom_wlan" groups="qcom_wlan" remote="github" revision="arrow-13.0-caf"/>
+  <project path="hardware/qcom/sdm845/display" name="ArrowOS/android_hardware_qcom_sdm845_display" groups="generic_fs,qcom_sdm845" revision="arrow-13.0" remote="github"/>
+  <project path="hardware/qcom/sdm845/media" name="ArrowOS/android_hardware_qcom_sdm845_media" groups="generic_fs,qcom_sdm845" revision="arrow-13.0" remote="github"/>
   
-
   <!-- Packages repos -->
-  <project path="packages/apps/ALTRUIST" name="packages_apps_ALTRUIST" remote="altho" />
-  <project path="packages/apps/Settings" name="packages_apps_Settings" remote="aosp" />
-  <project path="packages/apps/Nfc" name="Evolution-X/packages_apps_Nfc" revision="tiramisu" remote="github" />
-  <project path="packages/providers/DownloadProvider" name="packages_providers_DownloadProvider" remote="altho" />
-  <project path="packages/providers/MediaProvider" name="packages_providers_MediaProvider" remote="altho" />
-  <project path="packages/apps/RepainterServicePriv" name="packages_apps_RepainterServicePriv" remote="altho" />
+  <project path="packages/apps/Settings" name="packages_apps_Settings" remote="flexo" />
+  <project path="packages/apps/Nfc" name="ArrowOS/android_packages_apps_Nfc" revision="arrow-13.0" remote="github" />
+  <project path="packages/providers/DownloadProvider" name="android_packages_providers_DownloadProvider" revision="arrow-13.0" remote="github" />
+  <project path="packages/providers/MediaProvider" name="ArrowOS/android_packages_providers_MediaProvider" revision="arrow-13.0" remote="github" />
+  <project path="packages/apps/Camera2" name="ArrowOS/android_packages_apps_Camera2" revision="arrow-13.0" remote="github" />
+  <project path="packages/apps/Contacts" name="ArrowOS/android_packages_apps_Contacts" remote="github" revision="arrow-13.0" />
+  <project path="packages/apps/DeskClock" name="ArrowOS/android_packages_apps_DeskClock" remote="github" revision="arrow-13.0" />
+  <project path="packages/apps/Dialer" name="ArrowOS/android_packages_apps_Dialer" remote="github" revision="arrow-13.0" />
+  <project path="packages/apps/EmergencyInfo" name="ArrowOS/android_packages_apps_EmergencyInfo" remote="github" revision="arrow-13.0" />
+  <project path="packages/apps/ExactCalculator" name="android_packages_apps_ExactCalculator" remote="github" revision="arrow-13.0" />
 
   <!-- Packages (Resources) repos -->
-  <project path="packages/resources/devicesettings" name="Evolution-X/packages_resources_devicesettings" revision="tiramisu" remote="github" />
-  <project path="packages/apps/SettingsIntelligence" name="Evolution-X/packages_apps_SettingsIntelligence" revision="tiramisu" remote="github" />
+  <project path="packages/apps/Messaging" name="ArrowOS/android_packages_apps_Messaging" remote="github" revision="arrow-13.0" />
+  <project path="packages/apps/Launcher3" name="ArrowOS/android_packages_apps_Launcher3" remote="github" revision="arrow-13.0" />
+  <project path="packages/apps/SettingsIntelligence" name="ArrowOS/android_packages_apps_SettingsIntelligence" remote="github" revision="arrow-13.0" />
+  <project path="packages/apps/ThemePicker" name="ArrowOS/android_packages_apps_ThemePicker" remote="github" revision="arrow-13.0" />
+  <project path="packages/apps/SimpleDeviceConfig" name="ArrowOS/android_packages_apps_SimpleDeviceConfig" remote="github" revision="arrow-13.0" />
+  <project path="packages/apps/WallpaperPicker2" name="ArrowOS/android_packages_apps_WallpaperPicker2" remote="github" revision="arrow-13.0" />
+  <project path="packages/modules/adb" name="ArrowOS/android_packages_modules_adb" remote="github" revision="arrow-13.0" />
+  <project path="packages/modules/Bluetooth" name="ArrowOS/android_packages_modules_Bluetooth" remote="github" revision="arrow-13.0" />
+  <project path="packages/modules/Connectivity" name="ArrowOS/android_packages_modules_Connectivity" remote="github" revision="arrow-13.0" />
+  <project path="packages/modules/Permission" name="ArrowOS/android_packages_modules_Permission" remote="github" revision="arrow-13.0" />
+  <project path="packages/modules/Wifi" name="ArrowOS/android_packages_modules_Wifi" remote="github" revision="arrow-13.0" />
+  <project path="packages/providers/ContactsProvider" name="ArrowOS/android_packages_providers_ContactsProvider" remote="github" revision="arrow-13.0" />
+  <project path="packages/providers/TelephonyProvider" name="ArrowOS/android_packages_providers_TelephonyProvider" remote="github" revision="arrow-13.0" />
+  <project path="packages/resources/devicesettings" name="ArrowOS/android_packages_resources_devicesettings" remote="github" revision="arrow-13.0" />
+  <project path="packages/services/Telecomm" name="ArrowOS/android_packages_services_Telecomm" remote="github" revision="arrow-13.0" />
+  <project path="packages/services/Telephony" name="ArrowOS/android_packages_services_Telephony" remote="github" revision="arrow-13.0" />
   
-  <!-- Packages (Services) repos -->
-  <project path="packages/services/Telecomm" name="Evolution-X/packages_services_Telecomm" revision="tiramisu" remote="github" />
-  <project path="packages/services/Telephony" name="Evolution-X/packages_services_Telephony" revision="tiramisu" remote="github" />
   
   <!-- System Repos -->
-  <project path="system/core" name="Evolution-X/system_core" revision="tiramisu" remote="github" />
-  <project path="system/libhwbinder" name="Evolution-X/system_libhwbinder" revision="tiramisu" remote="github" />
-  <project path="system/media" name="Evolution-X/system_media" revision="tiramisu" remote="github" />
-  <project path="system/security" name="Evolution-X/system_security" revision="tiramisu" remote="github" />
-  <project path="system/vold" name="system_vold" remote="altho" />
-  <project path="system/update_engine" name="system_update_engine" remote="altho" />
-  <project path="system/tools/mkbootimg" name="system_tools_mkbootimg" remote="altho" />
+  <project path="system/core" name="ArrowOS/android_system_core" remote="github" revision="arrow-13.0" />
+  <project path="system/extras" name="ArrowOS/android_system_extras" remote="github" revision="arrow-13.0" />
+  <project path="system/libhwbinder" name="ArrowOS/android_system_libhwbinder" remote="github" revision="arrow-13.0" />
+  <project path="system/libziparchive" name="ArrowOS/android_system_libziparchive" remote="github" revision="arrow-13.0" />
+  <project path="system/logging" name="ArrowOS/android_system_logging" remote="github" revision="arrow-13.0" />
+  <project path="system/media" name="ArrowOS/android_system_media" remote="github" revision="arrow-13.0" />
+  <project path="system/qcom" name="ArrowOS/android_system_qcom" remote="github" revision="arrow-13.0" />
+  <project path="system/tools/mkbootimg" name="ArrowOS/android_system_tools_mkbootimg" remote="github" revision="arrow-13.0" />
+  <project path="system/security" name="ArrowOS/android_system_security" remote="github" revision="arrow-13.0" />
+  <project path="system/libhidl" name="ArrowOS/android_system_libhidl" remote="github" revision="arrow-13.0" />
+  <project path="system/sepolicy" name="system_sepolicy" remote="flexo" />
+  <project path="system/update_engine" name="ArrowOS/android_system_update_engine" remote="github" revision="arrow-13.0" />
+  <project path="system/vold" name="ArrowOS/android_system_vold" remote="github" revision="arrow-13.0" />
 
-  <!-- Device Repos -->	  
-  <project path="device/evolution/sepolicy" name="Evolution-X/device_evolution_sepolicy" revision="tiramisu" remote="github" />
-  <project path="device/qcom/sepolicy-legacy-um" name="device_qcom_sepolicy-legacy-um" remote="altho" />
-  <project path="device/qcom/sepolicy_vndr" name="device_qcom_sepolicy_vndr" remote="altho" />
+  <!-- Device Repos -->
+  <project path="device/custom/sepolicy" name="ArrowOS/android_device_arrow_sepolicy" remote="github" revision="arrow-13.0" />
+  <project path="device/mediatek/sepolicy_vndr" name="ArrowOS/android_device_mediatek_sepolicy_vndr" remote="arrow" revision="arrow-13.0" />
+  <project path="device/qcom/sepolicy" name="device_qcom_sepolicy" remote="flexo" />
+  <project path="device/qcom/sepolicy_vndr" name="device_qcom_sepolicy_vndr" remote="flexo" />
+  <project path="device/qcom/sepolicy-legacy-um" name="device_qcom_sepolicy-legacy-um" remote="flexo" />
   <project path="device/qcom/common" name="PixelExperience-Devices/device_qcom_common" remote="github" revision="twelve" />
 
   <!-- Vendor Stuff -->
-  <project path="vendor/aosp" name="vendor_aosp" remote="altho" />
-  <project path="vendor/gms" name="vendor_gapps" groups="vendor" remote="evo-gitlab" clone-depth="1" />
+  <project path="vendor/aosp" name="vendor_aosp" remote="flexo" />
   <project path="vendor/custom-preference" name="vendor_custom-preference" remote="altho" />
-  <project path="vendor/lawnchair" name="vendor_lawnchair" remote="altho" /> 
-  <project path="vendor/qcom/opensource/commonsys-intf/bluetooth" name="vendor_qcom_opensource_commonsys-intf_bluetooth" remote="altho" />
-  <project path="vendor/qcom/opensource/commonsys/packages/apps/Bluetooth" name="vendor_qcom_opensource_commonsys_packages_apps_Bluetooth" remote="altho" />
-  <project path="vendor/qcom/opensource/commonsys/bluetooth_ext" name="vendor_qcom_opensource_commonsys_bluetooth_ext" remote="altho" />
-  <project path="vendor/qcom/opensource/commonsys/system/bt" name="vendor_qcom_opensource_commonsys_system_bt" remote="altho" />
   <project path="vendor/codeaurora/telephony" name="ArrowOS/android_vendor_codeaurora_telephony" revision="arrow-13.0" remote="github" />
   
- 
-  <!-- Extras -->
-  <project path="prebuilts/clang/host/linux-x86/clang-proton" name="kdrag0n/proton-clang" remote="github" revision="master" clone-depth="1" />
-
-  <!-- Xiaomi Hardware -->
-  <project path="device/hardware/xiaomi" name="android_hardware_xiaomi" remote="altho" />
-  
-  <!-- Vendor (Qcom) repos -->
-  <project path="vendor/qcom/opensource/data-ipa-cfg-mgr" name="ArrowOS/android_vendor_qcom_opensource_data-ipa-cfg-mgr" revision="arrow-13.0" remote="github" />
-  <project path="vendor/qcom/opensource/dataservices" name="ArrowOS/android_vendor_qcom_opensource_dataservices" revision="arrow-13.0" remote="github" />
-  <project path="vendor/qcom/opensource/healthd-ext" name="ArrowOS/android_vendor_qcom_opensource_healthd-ext" revision="arrow-13.0" remote="github" />
-  <project path="vendor/qcom/opensource/vibrator" name="ArrowOS/android_vendor_qcom_opensource_vibrator" revision="arrow-13.0" remote="github" />
 </manifest>
